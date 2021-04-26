@@ -1,0 +1,45 @@
+server:
+  port: 8080
+  shutdown: graceful
+
+info:
+  app:
+    name: ${spring.application.name}
+    java:
+      version: ${java.version}
+management:
+  endpoints:
+    web:
+      exposure:
+        exclude: shutdown
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+spring:
+  application:
+    name: booking
+  main:
+    banner-mode: off
+    allow-bean-definition-overriding: true
+  datasource:
+    url: ""
+    username: ""
+    password: ""
+    driver-class-name: ""
+    tomcat:
+      max-idle: 2
+      max-active: 10
+      test-on-borrow: true
+    hikari:
+      minimum-idle: 2
+      maximum-pool-size: 10
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: false
+    show-sql: false
+    properties.hibernate.temp.use_jdbc_metadata_defaults: false
+  flyway:
+    enabled: true
+    table: booking_service_schema_version
